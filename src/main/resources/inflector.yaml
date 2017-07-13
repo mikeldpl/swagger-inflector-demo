@@ -1,0 +1,15 @@
+controllerPackage: com.github.mikeldpl.inflector.controllers
+modelPackage: ${model-package}
+swaggerUrl: /swagger.yaml
+
+entityProcessors:
+  - json
+  - xml
+  - yaml
+
+validatePayloads:
+  - IN
+  - OUT
+
+# set the environment to development | staging | production
+environment: development

@@ -1,0 +1,101 @@
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: Sample API
+
+basePath: /v1
+
+host: localhost:8080
+
+paths:
+  /peoples:
+    get:
+      tags:
+        - People
+      description: |
+        Gets `Person` objects
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: size
+          in: query
+          description: Size of array
+          required: true
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Person'
+  /pets:
+    get:
+      operationId: getPets
+      tags:
+        - pet
+      description: |
+        Gets `Pet` objects
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: size
+          in: query
+          description: Size of array
+          required: true
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pet'
+    post:
+      operationId: createPet
+      tags:
+        - pet
+      description: |
+        Gets `Pet` objects
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: size
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+      responses:
+        201:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Pet'
+definitions:
+  Person:
+    type: object
+    properties:
+      firstname:
+        type: string
+        example: "SOME EXAMPLE NAME"
+      lastname:
+        type: string
+      single:
+        type: boolean
+      pte:
+        $ref: '#/definitions/Pet'
+  Pet:
+    type: object
+    properties:
+      name:
+        type: string
+        minLength: 2
+      size:
+        type: integer
+        format: int64
